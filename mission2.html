@@ -6,17 +6,34 @@
   <link rel="stylesheet" href="asserts/css/mission2.css">
 </head>
 <body>
-<nav class="navbar">
-  <ul class="navbar-links">
-    <li><a href="intro.html">Introduction</a></li>
-    <li><a href="mission1.html">Mission 1</a></li>
-    <li><a href="mission3.html">Mission 3</a></li>
-    <li><a href="conclusion.html">Conclusion</a></li>
-  </ul>
-</nav>
-<main>
-  <h1>Mission 2</h1>
-</main>
+  <nav class="navbar">
+    <ul class="navbar-links">
+      <li><a href="intro.html">Introduction</a></li>
+      <li><a href="mission1.html">Mission 1</a></li>
+      <li><a href="mission3.html">Mission 3</a></li>
+      <li><a href="conclusion.html">Conclusion</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>Mission 2</h1>
+  </main>
+  <p id="context"> <br> L'objectif de cette mission est de débuter l'exploitation de la base de données de l'entreprise KDou afin de permettre,
+    à terme, la production d'analyses et d'indicateurs pertinents.
+    L'utilisation du logiciel Low Code Access est prévue pour la réalisation des requêtes nécessaires.</p>
+  <div id="indic1">
+    <p class="indicateurs"> <br> Le premier indicateur intéressant est le <i>"Quelles sont les produits de type viande livrés à Paris ?"</i>.<br>
+    Cet indicateur est intéressant car nous pouvons voir quels genres de produit sont livré à Paris, ça peut également nous donner une idée
+    sur les produits les plus populaire consommé à la capitale.</p>
+
+    <p class="indicateurs" id="resultat"><br><strong>Résultat :</strong> </p>
+    <br>
+    <img src="asserts/img/indic1.png" alt="resultat" height="138" width="477" class="img"/>
+    <p class="indicateurs"><br><strong>SQL :</strong> </p>
+    <p class="indicateurs" id="sql"><br>SELECT DISTINCT Produit.NomProd, Client.VilleCli, Categorie.NomCateg<br>
+      FROM Client INNER JOIN Commande <br>ON Client.CodeCli = Commande.CodeCli, Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg
+      <br>WHERE (((Client.VilleCli)="Paris") AND ((Categorie.NomCateg)="Viandes"));</p>
+  </div>
+  <!--Prochains indicateurs : f, j(faire un ptit carousel), p-->
 </body>
 
 <footer class="footer">

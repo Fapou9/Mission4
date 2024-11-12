@@ -9,6 +9,31 @@ body {
     background-color: #f4f4f4;
 }
 
+body main{
+    text-align: center;
+}
+#context{
+    padding-left: 20px;
+}
+
+.indicateurs {
+    padding-left: 20px;
+}
+
+.img {
+    display: block;
+    padding-left: 40px;
+}
+
+#sql {
+
+}
+
+#liste_Puces {
+    padding-left: 40px;
+    font-size: 15px;
+}
+
 .navbar {
     background-color: cornflowerblue;
     color: #fff;
