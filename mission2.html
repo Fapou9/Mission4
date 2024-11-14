@@ -25,15 +25,57 @@
     Cet indicateur est intéressant car nous pouvons voir quels genres de produit sont livré à Paris, ça peut également nous donner une idée
     sur les produits les plus populaire consommé à la capitale.</p>
 
-    <p class="indicateurs" id="resultat"><br><strong>Résultat :</strong> </p>
+    <p class="indicateurs" class="resultat"><br><strong>Résultat :</strong> </p>
     <br>
-    <img src="asserts/img/indic1.png" alt="resultat" height="138" width="477" class="img"/>
+    <img src="asserts/img/indic1.png" alt="resultat" class="img"/>
     <p class="indicateurs"><br><strong>SQL :</strong> </p>
-    <p class="indicateurs" id="sql"><br>SELECT DISTINCT Produit.NomProd, Client.VilleCli, Categorie.NomCateg<br>
+    <p class="indicateurs" class="sql"><br>SELECT DISTINCT Produit.NomProd, Client.VilleCli, Categorie.NomCateg<br>
       FROM Client INNER JOIN Commande <br>ON Client.CodeCli = Commande.CodeCli, Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg
       <br>WHERE (((Client.VilleCli)="Paris") AND ((Categorie.NomCateg)="Viandes"));</p>
   </div>
-  <!--Prochains indicateurs : f, j(faire un ptit carousel), p-->
+
+  <div id="indic2">
+    <p class="indicateurs"> <br> Le deuxième indicateur intéressant est le <i>"Combien y a-t-il de clients nantais ? "</i>.<br>
+      Cet indicateur est intéressant car c'est important pour nous de savoir notre nombre de clients par villes, ça peut également nous donner une idée
+      sur les villes avec le plus de clients et pouvoir ainsi exploiter ce nombre.</p>
+
+    <p class="indicateurs" class="resultat"><br><strong>Résultat :</strong> </p>
+    <br>
+    <img src="asserts/img/indic2.png" alt="resultat" class="img"/>
+    <p class="indicateurs"><br><strong>SQL :</strong> </p>
+    <p class="indicateurs" class="sql">SELECT Count(Client.VilleCli) AS CompteDeVilleCli <br>FROM Client
+      <br>WHERE (((Client.VilleCli)="Nantes"));
+    </p>
+  </div>
+
+  <div id="indic3">
+    <p class="indicateurs"> <br> Le troisième indicateur intéressant est le <i>"Donner le prix moyen de vente des produits, le prix minimum et le prix maximum."</i>.<br>
+      Cet indicateur est intéressant car connaitre ses prix permet de mieux gerer les ventes. Graçe à cette indicateur nous pouvons déduire si les produits coute trop cher ou au contraire pas assez.</p>
+
+    <p class="indicateurs" class="resultat"><br><strong>Résultat :</strong> </p>
+    <br>
+    <img src="asserts/img/indic3.png" alt="resultat" class="img"/>
+    <p class="indicateurs"><br><strong>SQL :</strong> </p>
+    <p class="indicateurs" class="sql">SELECT Min(Produit.PrixUnit) AS [Min], Avg(Produit.PrixUnit) AS Moyen, Max(Produit.PrixUnit) AS [Max]
+      <br>FROM Produit;
+    </p>
+  </div>
+
+  <div id="indic4">
+    <p class="indicateurs"> <br> Le dernier indicateur intéressant est : <i>"Dans quelles villes la clientèle est-elle la plus importante ?"</i>.<br>
+      Cet indicateur est intéressant car connaitre les villes avec le plus de clients permet de mieux gerer ses boutiques et les faire évoluer en fonction pour améliorer l'éxperience du client.</p>
+
+    <p class="indicateurs" class="resultat"><br><strong>Résultat :</strong> </p>
+    <br>
+    <img src="asserts/img/indic4.png" alt="resultat" class="img"/>
+    <p class="indicateurs"><br><strong>SQL :</strong> </p>
+    <p class="indicateurs" class="sql">SELECT TOP 3 Client.VilleCli, Count(Client.VilleCli) AS Ville
+      <br>FROM Client
+      <br>GROUP BY Client.VilleCli
+      <br>ORDER BY Count(Client.VilleCli) DESC;
+    </p>
+  </div>
+  <!--Prochains indicateurs  p-->
 </body>
 
 <footer class="footer">

@@ -9,6 +9,10 @@ body {
     background-color: #f4f4f4;
 }
 
+body main{
+    text-align: center;
+}
+
 .navbar {
     background-color: cornflowerblue;
     color: #fff;
@@ -36,6 +40,22 @@ body {
 
 .navbar-links li {
     margin-left: 1em;
+}
+
+#context {
+    padding-left: 20px;
+}
+
+.mini_titre {
+    padding-left: 20px;
+}
+
+#bilan {
+    padding-left: 40px;
+}
+
+#conclusion {
+    padding-left: 40px;
 }
 
 .footer {

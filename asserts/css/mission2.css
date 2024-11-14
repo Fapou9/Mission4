@@ -7,6 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    height: 1700px;
 }
 
 body main{
@@ -23,10 +24,8 @@ body main{
 .img {
     display: block;
     padding-left: 40px;
-}
-
-#sql {
-
+    max-width: 100%; /* S'assure que l'image ne dépasse pas la largeur de son conteneur */
+    height: auto; /* Garde la hauteur proportionnelle */
 }
 
 #liste_Puces {
@@ -65,16 +64,18 @@ body main{
 
 .footer {
     position: fixed;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin-bottom: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: cornflowerblue;
     color: #f0f0f0;
     padding: 20px 0;
     text-align: center;
     font-size: 0.9em;
 }
+
+
+
 
 .footer-container {
     width: 80%;
