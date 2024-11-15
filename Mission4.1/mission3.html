@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mission 3</title>
+    <link rel="stylesheet" href="asserts/css/mission3.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar-links">
+            <li><a href="intro.html">Introduction</a></li>
+            <li><a href="mission1.html">Mission 1</a></li>
+            <li><a href="mission2.html">Mission 2</a></li>
+            <li><a href="conclusion.html">Conclusion</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Mission 3</h1>
+    </main>
+
+    <div id="theme1">
+        <p id="context"> <br> L'objectif de cette mission est d'exploiter la base de données de l'entreprise KDou pour produire des analyses et indicateurs pertinants</p>
+        <p class="theme"><br><Strong>Thème :</Strong> Desserts/Boissons</p>
+        <p class="indic"><br>Les deux indicateurs intéressants sont : <br>
+        <i>Combien y a-t-il des produits correspondants vendus 50€ ou plus ? On veut les connaître
+            avec leur pays d’origine.</i> & <i>On veut le chiffre d’affaire généré par catégorie desserts ou catégorie. </i></p>
+        <p class="indic"><br><Strong>SQL :</Strong></p>
+        <p class="indic"><br>1 : SELECT Produit.NomProd, Produit.PrixUnit, Fournisseur.Pays
+            <br>FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+            <br>WHERE Produit.PrixUnit > 49
+            <br>GROUP BY Produit.NomProd, Produit.PrixUnit, Fournisseur.Pays;</p>
+        <p class="indic"><br>2 : SELECT Categorie.NomCateg, Sum(DetailCommande.PrixUnitCli) AS SommeDePrixUnitCli
+            <br>FROM Commande INNER JOIN ((Categorie INNER JOIN Produit ON Categorie.CodeCateg = Produit.CodeCateg) INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd) ON Commande.NoCom = DetailCommande.NoCom
+            <br>GROUP BY Categorie.NomCateg;</p>
+        <p class="indic"><br><strong>Résultats :</strong></p>
+        <br>
+        <img src="asserts/img/theme1.png" alt="resultat" class="img"/>
+        <br>
+        <img src="asserts/img/theme1.2.png" alt="resultat" class="img"/>
+    </div>
+
+    <div id="theme2">
+        <p class="theme"><br><Strong>Thème :</Strong> Offre Kdou</p>
+        <p class="indic"><br>Les deux indicateurs intéressants sont : <br>
+            <i>Donner des informations sur les fournisseurs qui proposent des produits qui ne sont pas
+                commandés actuellement ?</i> & <i> Quels sont les pays qui ont une offre importante de produit ?</i></p>
+        <p class="indic"><br><Strong>SQL :</Strong></p>
+        <p class="indic"><br>1 : SELECT Fournisseur.NoFour, Fournisseur.Contact, Fournisseur.Pays
+            <br>FROM Fournisseur LEFT JOIN FournisseursCommandé ON Fournisseur.NoFour = FournisseursCommandé.NoFour
+            <br>WHERE FournisseursCommandé.NoFour IS NULL;
+        </p>
+        <p class="indic"><br>2 : SELECT count(Produit.RefProd) AS NB_prod, Fournisseur.pays
+            <br>FROM Produit INNER JOIN Fournisseur ON Produit.NoFour = Fournisseur.NoFour
+            <br>GROUP BY Fournisseur.pays;</p>
+        <p class="indic"><br><strong>Résultats :</strong></p>
+        <br>
+        <img src="asserts/img/theme2.png" alt="resultat" class="img"/>
+        <br>
+        <img src="asserts/img/theme2.1.png" alt="resultat" class="img"/>
+    </div>
+
+    <div id="theme3">
+        <p class="theme"><br><Strong>Thème :</Strong> Provenance des produits</p>
+        <p class="indic"><br>Les deux indicateurs intéressants sont : <br>
+            <i>Pour l’Allemagne pays proche, quels sont les desserts ou boissons vendus à moins
+                de 100 euros ? </i> & <i>Quels fournisseurs vendent uniquement des boissons ou des desserts ?</i></p>
+        <p class="indic"><br><Strong>SQL :</Strong></p>
+        <p class="indic"><br>1 :SELECT Produit.NomProd, Produit.PrixUnit, Categorie.NomCateg, Produit.RefProd
+            <br>FROM Produit INNER JOIN Categorie ON Produit.CodeCateg = Categorie.CodeCateg
+            <br>WHERE PrixUnit < 100 AND NomCateg = "Boissons" OR NomCateg = "Desserts"
+            <br>ORDER BY Produit.PrixUnit;
+
+        </p>
+        <p class="indic"><br>2 : SELECT DISTINCT f.Societe
+            <br>FROM Fournisseur AS f
+            <br>WHERE f.NoFour NOT IN (SELECT p.NoFour FROM Produit p WHERE p.CodeCateg NOT IN (1,3))
+            <br>AND f.NoFour IN ( SELECT p.NoFour FROM Produit p WHERE p.CodeCateg IN (1,3)
+            );
+        </p>
+        <p class="indic"><br><strong>Résultats :</strong></p>
+        <br>
+        <img src="asserts/img/theme3.png" alt="resultat" class="img"/>
+        <br>
+        <img src="asserts/img/theme3.1.png" alt="resultat" class="img"/>
+    </div>
+
+    <div id="theme4">
+        <p class="theme"><br><Strong>Thème :</Strong> Clientèle</p>
+        <p class="indic"><br>Les deux indicateurs intéressants sont : <br>
+            <i>Un client nantais Le verre à soi souhaite savoir quels autres clients nantais
+                commandent aussi des produits en Allemagne pour envisager de futures livraisons
+                groupées.</i> & <i>Certains clients n’ont jamais eu la remise la plus importante de 25%. Qui sont-ils ? </i></p>
+        <p class="indic"><br><Strong>SQL :</Strong></p>
+        <p class="indic"><br>1 :SELECT DISTINCT Client.VilleCli, Client.SocieteCli, Fournisseur.Pays
+            <br>FROM Client, Fournisseur
+            <br>WHERE (((Client.VilleCli) Like "Nantes") AND (Not (Client.SocieteCli)="Verre à soi") AND ((Fournisseur.Pays) Like "Allemagne"));
+        </p>
+        <p class="indic"><br>2 : SELECT DISTINCT Commande.CodeCli, Client.*
+            <br>FROM Client INNER JOIN (Commande INNER JOIN DetailCommande ON Commande.NoCom = DetailCommande.NoCom) ON Client.CodeCli = Commande.CodeCli
+            <br>WHERE (((DetailCommande.Remise)<0.25));
+        </p>
+        <p class="indic"><br><strong>Résultats :</strong></p>
+        <br>
+        <img src="asserts/img/theme4.png" alt="resultat" class="img"/>
+        <br>
+        <img src="asserts/img/theme4.1.png" alt="resultat" class="img"/>
+    </div>
+</body>
+
+<footer class="footer">
+    <div class="footer-container">
+        <p>
+            Réalisé par le groupe <strong>3A : GIUSTIGNANO Neal, MASSON Lenny, FITIGAU Marius, CHABBI Brahim</strong>
+        </p>
+        <nav class="footer-links">
+            <a href="mission1.html">Mission 1</a> |
+            <a href="mission2.html">Mission 2</a> |
+            <a href="mission3.html">Mission 3</a> |
+            <a href="conclusion.html">Conclusion</a>
+        </nav>
+    </div>
+</footer>
+</html>
