@@ -1,31 +1,28 @@
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     height: 1000px;
     padding-bottom: 50px;
 }
-
 body main{
     text-align: center;
-
 }
-
 .intro {
     padding-left: 20px;
+    margin-top: 20px;
 }
-
 #liste_Puces {
     padding-left: 40px;
     font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-
-
 .tableau-style{
     position: static;
     border-collapse: collapse;
@@ -58,9 +55,6 @@ div.info article.info_table {
     font-size: 30px;
     font-weight: bold;
 }
-
-
-
 .navbar {
     background-color: cornflowerblue;
     color: #fff;
@@ -69,27 +63,22 @@ div.info article.info_table {
     justify-content: space-between;
     align-items: center;
 }
-
 .navbar a {
     color: white;
     text-decoration: none;
     padding: 0.5em 1em;
 }
-
 .navbar a:hover {
     background-color: lightblue;
     border-radius: 4px;
 }
-
 .navbar-links {
     list-style: none;
     display: flex;
 }
-
 .navbar-links li {
     margin-left: 1em;
 }
-
 .footer {
     position: fixed;
     bottom: 0px;
@@ -102,30 +91,23 @@ div.info article.info_table {
     text-align: center;
     font-size: 0.9em;
 }
-
 .footer-container {
     width: 80%;
     max-width: 1200px;
     margin: auto;
 }
-
 .footer a {
     color: white;
     text-decoration: none;
     margin: 0 8px;
     font-weight: bold;
 }
-
 .footer a:hover {
     text-decoration: underline;
 }
-
 .footer-links {
     margin-top: 10px;
 }
-
 .footer p {
     margin: 5px 0;
 }
-
-
