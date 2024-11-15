@@ -24,8 +24,8 @@ body main{
 .img {
     display: block;
     padding-left: 40px;
-    max-width: 100%; /* S'assure que l'image ne dépasse pas la largeur de son conteneur */
-    height: auto; /* Garde la hauteur proportionnelle */
+    max-width: 100%;
+    height: auto;
 }
 
 #liste_Puces {
